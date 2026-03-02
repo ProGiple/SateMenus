@@ -1,0 +1,24 @@
+name: SateMenus
+version: '${project.version}'
+main: org.satellite.dev.progiple.satemenus.SateMenus
+api-version: '1.16'
+depend: [LunaSpring]
+authors: [ProGiple]
+permissions:
+  satemenus.openBypass:
+    default: false
+  satemenus.reload:
+    default: op
+  satemenus.unregister:
+    default: op
+  satemenus.open:
+    default: op
+commands:
+  satemenus:
+    aliases:
+      - sm
+      - menus
+      - menu
+      - smenus
+      - smenu
+      - satemenu

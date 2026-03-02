@@ -1,0 +1,12 @@
+reservedItems:
+  RESERVE1:
+    material: STONE
+    displayName: ""
+    lore: []
+PLAY:
+  0:
+    0: RESERVE1
+    1:
+      material: IRON_INGOT
+      displayName: ""
+      lore: []
