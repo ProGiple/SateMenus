@@ -18,8 +18,8 @@ import java.util.List;
 public class OpenSubCommand implements LunaExecutor {
     @Override
     public void invoke(CommandSender sender, String[] strings) {
-        MenuSettings menuSettings = Menus.getSettings(strings[1]);
-        Menus.open(VanishManager.exact(sender, strings[0]), menuSettings);
+        MenuSettings menuSettings = Menus.getSettings(strings[2]);
+        Menus.open(VanishManager.exact(sender, strings[1]), menuSettings);
     }
 
     @Override
