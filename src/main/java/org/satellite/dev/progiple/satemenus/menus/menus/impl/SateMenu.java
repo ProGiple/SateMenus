@@ -1,4 +1,4 @@
-package org.satellite.dev.progiple.satemenus.menus.menus;
+package org.satellite.dev.progiple.satemenus.menus.menus.impl;
 
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
@@ -15,7 +15,6 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.novasparkle.lunaspring.API.menus.IMenu;
-import org.novasparkle.lunaspring.API.menus.ItemListMenu;
 import org.novasparkle.lunaspring.API.menus.MenuManager;
 import org.novasparkle.lunaspring.API.menus.items.Decoration;
 import org.novasparkle.lunaspring.API.menus.items.Item;
@@ -27,6 +26,9 @@ import org.satellite.dev.progiple.satemenus.SateMenus;
 import org.satellite.dev.progiple.satemenus.menus.Menus;
 import org.satellite.dev.progiple.satemenus.menus.Refreshable;
 import org.satellite.dev.progiple.satemenus.menus.items.SMItem;
+import org.satellite.dev.progiple.satemenus.menus.menus.AnimatedMenu;
+import org.satellite.dev.progiple.satemenus.menus.menus.ISateMenu;
+import org.satellite.dev.progiple.satemenus.menus.menus.Recreatable;
 import org.satellite.dev.progiple.satemenus.menus.params.MenuConfiguredItem;
 import org.satellite.dev.progiple.satemenus.menus.params.MenuSettings;
 import org.satellite.dev.progiple.satemenus.menus.params.animations.IAnimation;
@@ -34,7 +36,7 @@ import org.satellite.dev.progiple.satemenus.menus.params.animations.IAnimation;
 import java.util.*;
 
 @Getter
-public class SateMenu implements ItemListMenu, Refreshable, Recreatable, AnimatedMenu {
+public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMenu {
     private final List<Item> itemList;
     private final Player player;
     private final Inventory inventory;

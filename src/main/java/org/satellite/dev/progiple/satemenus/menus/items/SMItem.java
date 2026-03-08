@@ -13,7 +13,7 @@ import org.novasparkle.lunaspring.API.menus.updatable.UpdatableIMenu;
 import org.novasparkle.lunaspring.API.menus.updatable.UpdatableItem;
 import org.novasparkle.lunaspring.API.util.utilities.Utils;
 import org.satellite.dev.progiple.satemenus.menus.Refreshable;
-import org.satellite.dev.progiple.satemenus.menus.menus.SateMenu;
+import org.satellite.dev.progiple.satemenus.menus.menus.impl.SateMenu;
 import org.satellite.dev.progiple.satemenus.menus.params.MenuConfiguredAction;
 import org.satellite.dev.progiple.satemenus.menus.params.MenuConfiguredItem;
 import org.satellite.dev.progiple.satemenus.utils.SateCache;
@@ -57,7 +57,6 @@ public class SMItem extends Item implements Refreshable, UpdatableItem {
 
         SateCache cache = configuredItem.cache() == null ? sateMenu.getSettings().cooldownCache() : configuredItem.cache();
         if (cache != null && cache.contains(cache.buildStatement(uuid, this))) {
-            e.setCancelled(true);
             return this;
         }
 

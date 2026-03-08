@@ -4,12 +4,15 @@ import lombok.Getter;
 import lombok.experimental.Accessors;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.jetbrains.annotations.Nullable;
 import org.novasparkle.lunaspring.API.conditions.Conditions;
 import org.novasparkle.lunaspring.API.configuration.IConfig;
+import org.novasparkle.lunaspring.API.menus.MenuManager;
 import org.novasparkle.lunaspring.API.util.service.managers.ColorManager;
 import org.novasparkle.lunaspring.API.util.utilities.Utils;
+import org.satellite.dev.progiple.satemenus.menus.menus.ISateMenu;
 import org.satellite.dev.progiple.satemenus.menus.params.animations.IAnimation;
 import org.satellite.dev.progiple.satemenus.menus.params.animations.Animations;
 import org.satellite.dev.progiple.satemenus.menus.params.templates.Template;
@@ -106,6 +109,10 @@ public class MenuSettings {
 
     public void unload() {
         this.registrableCommand.unregister();
+        Collection<ISateMenu> menus = MenuManager.getActiveMenus(ISateMenu.class, false)
+                .filter(m -> m.getSettings().equals(this))
+                .toList();
+        menus.forEach(m -> m.getPlayer().closeInventory(InventoryCloseEvent.Reason.PLUGIN));
     }
 
     public void load() {

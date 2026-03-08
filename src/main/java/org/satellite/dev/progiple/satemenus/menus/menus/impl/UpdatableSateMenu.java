@@ -1,4 +1,4 @@
-package org.satellite.dev.progiple.satemenus.menus.menus;
+package org.satellite.dev.progiple.satemenus.menus.menus.impl;
 
 import lombok.Getter;
 import org.bukkit.entity.Player;
@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.novasparkle.lunaspring.API.menus.updatable.UpdatableIMenu;
 import org.novasparkle.lunaspring.API.menus.updatable.tasks.OptimizedUpdatableTask;
+import org.satellite.dev.progiple.satemenus.menus.menus.Recreatable;
 import org.satellite.dev.progiple.satemenus.menus.params.MenuSettings;
 
 @Getter

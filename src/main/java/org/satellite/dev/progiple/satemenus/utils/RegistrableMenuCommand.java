@@ -52,7 +52,6 @@ public class RegistrableMenuCommand extends Command {
             throw new IllegalStateException(String.format("Command %s was already registered!", getName()));
         }
 
-        // Получаем commandMap, если ещё не получили
         if (commandMap == null) {
             try {
                 final Field f = Bukkit.getServer().getClass().getDeclaredField("commandMap");
@@ -60,11 +59,10 @@ public class RegistrableMenuCommand extends Command {
                 commandMap = (CommandMap) f.get(Bukkit.getServer());
             } catch (final Exception e) {
                 e.printStackTrace();
-                return; // не можем продолжить без commandMap
+                return;
             }
         }
 
-        // Регистрируем команду с fallback-префиксом
         commandMap.register(FALLBACK_PREFIX, this);
         registered = true;
     }

@@ -5,7 +5,9 @@ import org.novasparkle.lunaspring.API.configuration.IConfig;
 import org.novasparkle.lunaspring.API.util.utilities.Utils;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @UtilityClass
@@ -14,6 +16,10 @@ public class Templates {
 
     public Template getTemplate(String id) {
         return Utils.find(templates, t -> t.id().equals(id)).orElse(null);
+    }
+
+    public List<String> getIds() {
+        return templates.stream().map(Template::id).toList();
     }
 
     public void register(Template template) {

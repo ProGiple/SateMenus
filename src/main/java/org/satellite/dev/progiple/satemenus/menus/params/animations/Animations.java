@@ -18,6 +18,10 @@ public class Animations {
         return animations.get(id);
     }
 
+    public Set<String> keySet() {
+        return animations.keySet();
+    }
+
     public void register(String id, IAnimation animation) {
         animations.put(id, animation);
     }

@@ -7,8 +7,8 @@ import org.novasparkle.lunaspring.API.configuration.IConfig;
 import org.novasparkle.lunaspring.API.menus.IMenu;
 import org.novasparkle.lunaspring.API.menus.MenuManager;
 import org.satellite.dev.progiple.satemenus.menus.menus.Recreatable;
-import org.satellite.dev.progiple.satemenus.menus.menus.SateMenu;
-import org.satellite.dev.progiple.satemenus.menus.menus.UpdatableSateMenu;
+import org.satellite.dev.progiple.satemenus.menus.menus.impl.SateMenu;
+import org.satellite.dev.progiple.satemenus.menus.menus.impl.UpdatableSateMenu;
 import org.satellite.dev.progiple.satemenus.menus.params.MenuSettings;
 
 import java.io.File;
