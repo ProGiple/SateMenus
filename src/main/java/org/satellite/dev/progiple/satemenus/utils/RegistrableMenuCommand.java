@@ -23,10 +23,8 @@ public class RegistrableMenuCommand extends Command {
     private MenuSettings menu;
     private boolean registered = false;
     private boolean unregistered = false;
-    public RegistrableMenuCommand(final @NotNull MenuSettings settings, List<String> commands) {
-        super(commands.isEmpty() ? settings.id() : commands.get(0));
-        this.menu = settings;
-
+    public RegistrableMenuCommand(String id, List<String> commands) {
+        super(commands.isEmpty() ? id : commands.get(0));
         if (commands.size() > 1) {
             this.setAliases(commands.subList(1, commands.size()));
         }
@@ -47,7 +45,7 @@ public class RegistrableMenuCommand extends Command {
         return true;
     }
 
-    public void register() {
+    public void register(MenuSettings menu) {
         if (registered) {
             throw new IllegalStateException(String.format("Command %s was already registered!", getName()));
         }
@@ -63,6 +61,7 @@ public class RegistrableMenuCommand extends Command {
             }
         }
 
+        this.menu = menu;
         commandMap.register(FALLBACK_PREFIX, this);
         registered = true;
     }

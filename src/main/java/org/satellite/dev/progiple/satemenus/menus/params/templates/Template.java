@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import org.novasparkle.lunaspring.API.configuration.IConfig;
 import org.novasparkle.lunaspring.API.util.utilities.LunaMath;
 import org.novasparkle.lunaspring.API.util.utilities.Utils;
+import org.satellite.dev.progiple.satemenus.menus.params.ITemplated;
 import org.satellite.dev.progiple.satemenus.menus.params.MenuConfiguredAction;
 import org.satellite.dev.progiple.satemenus.menus.params.MenuConfiguredItem;
 
@@ -27,7 +28,7 @@ public record Template(@NotNull IConfig config,
                        @Nullable MenuConfiguredAction closeAction,
                        @NotNull List<String> animations,
                        @NotNull List<MenuConfiguredItem> items,
-                       @Nullable ConfigurationSection decorations) {
+                       @Nullable ConfigurationSection decorations) implements ITemplated {
     public static Template convert(IConfig config) {
         Template baseTemplate = Templates.getTemplate(config.getString("template"));
         return new Template(

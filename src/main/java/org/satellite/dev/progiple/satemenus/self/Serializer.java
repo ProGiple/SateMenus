@@ -76,7 +76,6 @@ public class Serializer {
 
     public List<String> performanceSlots(List<Integer> intSlots) {
         intSlots.sort(Comparator.comparingInt(i -> i));
-        System.out.println("Отсортировано: " + intSlots);
 
         List<String> slots = new ArrayList<>();
         StringBuilder structuredSlots = new StringBuilder();

@@ -1,6 +1,7 @@
 package org.satellite.dev.progiple.satemenus.menus.params;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -22,10 +23,9 @@ import org.satellite.dev.progiple.satemenus.utils.SateCache;
 
 import java.util.*;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
-@Getter @Accessors(fluent = true)
-public class MenuSettings {
+@Getter @Accessors(fluent = true) @RequiredArgsConstructor
+public class MenuSettings implements ITemplated {
     private final IConfig config;
     private final String id;
     private final Map<String, Boolean> commands;
@@ -83,12 +83,7 @@ public class MenuSettings {
             }
         }
 
-        List<String> commands = this.commands.entrySet()
-                .stream()
-                .filter(Map.Entry::getValue)
-                .map(Map.Entry::getKey)
-                .toList();
-        this.registrableCommand = new RegistrableMenuCommand(this, commands);
+        this.registrableCommand = MenuSettingsBuilder.registrableMenuCommandCreate(id, commands);
     }
 
     protected @Nullable <E> E loadParameter(E obj, Template template, Function<Template, E> ifNull) {
@@ -116,6 +111,6 @@ public class MenuSettings {
     }
 
     public void load() {
-        this.registrableCommand.register();
+        this.registrableCommand.register(this);
     }
 }

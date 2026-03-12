@@ -1,10 +1,12 @@
-package org.satellite.dev.progiple.satemenus.self;
+package org.satellite.dev.progiple.satemenus.self.menusCreator;
 
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.novasparkle.lunaspring.API.configuration.Configuration;
 import org.novasparkle.lunaspring.API.menus.IMenu;
+import org.satellite.dev.progiple.satemenus.self.Serializer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,8 +37,12 @@ public interface IGeneratorMenu extends IMenu {
         AtomicInteger i = new AtomicInteger(0);
         map.forEach((item, slots) -> {
             String sectionName = String.valueOf(i.incrementAndGet());
-            ConfigurationSection section = config.createSection("decorations", sectionName);
+            if (item.hasItemMeta()) {
+                if (item.getItemMeta().hasDisplayName())
+                    sectionName = ChatColor.stripColor(item.getItemMeta().getDisplayName()) + "-" + sectionName;
+            }
 
+            ConfigurationSection section = config.createSection("decorations", sectionName);
             section = serializer.preSerializeItem(section, item);
 
             List<String> slotList = serializer.performanceSlots(slots);

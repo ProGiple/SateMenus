@@ -1,4 +1,4 @@
-package org.satellite.dev.progiple.satemenus.self;
+package org.satellite.dev.progiple.satemenus.self.menusCreator;
 
 import lombok.RequiredArgsConstructor;
 

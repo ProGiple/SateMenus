@@ -2,6 +2,7 @@ commands:
   donate: true # Команда: Регистрировать ли команду?
 title: "&0Магазин для %player_name%"
 type: CHEST
+updatingTime: 0
 rows: 6
 template: example
 clickCooldownTicks: 5

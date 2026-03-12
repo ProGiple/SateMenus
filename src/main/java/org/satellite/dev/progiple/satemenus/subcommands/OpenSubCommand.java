@@ -1,12 +1,14 @@
 package org.satellite.dev.progiple.satemenus.subcommands;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.novasparkle.lunaspring.API.commands.LunaExecutor;
 import org.novasparkle.lunaspring.API.commands.annotations.Args;
 import org.novasparkle.lunaspring.API.commands.annotations.Permissions;
 import org.novasparkle.lunaspring.API.commands.annotations.SubCommand;
 import org.novasparkle.lunaspring.API.util.service.managers.VanishManager;
 import org.novasparkle.lunaspring.API.util.utilities.Utils;
+import org.satellite.dev.progiple.satemenus.configs.Config;
 import org.satellite.dev.progiple.satemenus.menus.Menus;
 import org.satellite.dev.progiple.satemenus.menus.params.MenuSettings;
 
@@ -19,7 +21,21 @@ public class OpenSubCommand implements LunaExecutor {
     @Override
     public void invoke(CommandSender sender, String[] strings) {
         MenuSettings menuSettings = Menus.getSettings(strings[2]);
-        Menus.open(VanishManager.exact(sender, strings[1]), menuSettings);
+        if (menuSettings == null) {
+            Config.sendMessage(sender, "menuIsNotExists", "id-%-" + strings[2]);
+            return;
+        }
+
+        Player player = VanishManager.exact(sender, strings[1]);
+        if (player == null) {
+            Config.sendMessage(sender, "playerIsOffline", "player-%-" + strings[1]);
+            return;
+        }
+
+        Menus.open(player, menuSettings);
+        Config.sendMessage(sender, "openMenuSuccess",
+                "player-%-" + player.getName(),
+                "id-%-" + menuSettings.id());
     }
 
     @Override
