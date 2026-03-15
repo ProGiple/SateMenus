@@ -9,7 +9,7 @@ import org.novasparkle.lunaspring.API.menus.MenuManager;
 import org.novasparkle.lunaspring.API.util.utilities.Utils;
 import org.satellite.dev.progiple.satemenus.menus.Refreshable;
 import org.satellite.dev.progiple.satemenus.menus.menus.AnimatedMenu;
-import org.satellite.dev.progiple.satemenus.menus.menus.Recreatable;
+import org.satellite.dev.progiple.satemenus.menus.menus.Backable;
 import org.satellite.dev.progiple.satemenus.menus.params.animations.Animations;
 import org.satellite.dev.progiple.satemenus.menus.params.animations.IAnimation;
 
@@ -20,6 +20,7 @@ public record MenuConfiguredAction(@Nullable ConfigurationSection conditions,
                                    @NotNull List<String> actions,
                                    boolean cancelEventIfError) {
     public void process(Player target, @Nullable Refreshable refreshable) {
+        IMenu menu = MenuManager.getActiveMenu(target);
         for (String action : actions) {
             if (action.startsWith("[REFRESH]")) {
                 if (refreshable != null) refreshable.refresh();
@@ -27,22 +28,15 @@ public record MenuConfiguredAction(@Nullable ConfigurationSection conditions,
             }
 
             if (action.startsWith("[BACK]")) {
-                IMenu menu = MenuManager.getActiveMenu(target);
-                if (menu instanceof Recreatable recreatable) {
-                    menu = recreatable.reCreate(target);
-                    if (menu != null) MenuManager.openInventory(menu);
+                if (menu instanceof Backable backable) {
+                    backable.back(target);
                 }
                 continue;
             }
 
             if (action.startsWith("[BACK_OR_CLOSE]")) {
-                IMenu menu = MenuManager.getActiveMenu(target);
-                if (menu instanceof Recreatable recreatable) {
-                    menu = recreatable.reCreate(target);
-                    if (menu != null) {
-                        MenuManager.openInventory(menu);
-                        continue;
-                    }
+                if (menu instanceof Backable backable) {
+                    if (backable.back(target)) continue;
                 }
 
                 target.closeInventory(InventoryCloseEvent.Reason.PLUGIN);
@@ -50,7 +44,6 @@ public record MenuConfiguredAction(@Nullable ConfigurationSection conditions,
             }
 
             if (action.startsWith("[ANIMATION] ")) {
-                IMenu menu = MenuManager.getActiveMenu(target);
                 if (menu instanceof AnimatedMenu animatedMenu) {
                     String id = action.replace("[ANIMATION] ", "");
 

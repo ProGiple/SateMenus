@@ -41,6 +41,7 @@ org\satellite\dev\progiple\satemenus\self\menusCreator\GeneratorType.class
 org\satellite\dev\progiple\satemenus\configs\Config.class
 org\satellite\dev\progiple\satemenus\menus\menus\impl\SateMenu.class
 org\satellite\dev\progiple\satemenus\self\menusCreator\IGeneratorMenu.class
+org\satellite\dev\progiple\satemenus\menus\menus\Backable.class
 org\satellite\dev\progiple\satemenus\self\menusCreator\storage\impl\DecorationsMenu.class
 org\satellite\dev\progiple\satemenus\utils\SateCache.class
 org\satellite\dev\progiple\satemenus\menus\params\animations\Animations.class

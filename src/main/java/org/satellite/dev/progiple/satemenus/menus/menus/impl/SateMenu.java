@@ -28,9 +28,9 @@ import org.satellite.dev.progiple.satemenus.menus.Menus;
 import org.satellite.dev.progiple.satemenus.menus.Refreshable;
 import org.satellite.dev.progiple.satemenus.menus.items.SMItem;
 import org.satellite.dev.progiple.satemenus.menus.menus.AnimatedMenu;
+import org.satellite.dev.progiple.satemenus.menus.menus.Backable;
 import org.satellite.dev.progiple.satemenus.menus.menus.ISateMenu;
 import org.satellite.dev.progiple.satemenus.menus.menus.Recreatable;
-import org.satellite.dev.progiple.satemenus.menus.params.MenuConfiguredAction;
 import org.satellite.dev.progiple.satemenus.menus.params.MenuConfiguredItem;
 import org.satellite.dev.progiple.satemenus.menus.params.MenuSettings;
 import org.satellite.dev.progiple.satemenus.menus.params.animations.IAnimation;
@@ -38,7 +38,7 @@ import org.satellite.dev.progiple.satemenus.menus.params.animations.IAnimation;
 import java.util.*;
 
 @Getter
-public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMenu {
+public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMenu, Backable {
     private final List<Item> itemList;
     private final Player player;
     private final Inventory inventory;
@@ -66,6 +66,12 @@ public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMe
             decoration.getDecorationItems().forEach(i -> i.replaceLore(l -> Utils.setPlaceholders(player, l)));
             decoration.insert(inventory);
         }
+    }
+
+    @Override
+    public boolean back(Player player) {
+        if (this.recreatable != null) return this.recreatable.reCreate(player) != null;
+        return false;
     }
 
     @Override
@@ -256,16 +262,10 @@ public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMe
 
     @Override
     public IMenu reCreate(Player player) {
-        if (this.recreatable instanceof SateMenu sateMenu) {
-            SateMenu menu = Menus.open(player, sateMenu.settings, false);
-            if (menu == null) return null;
+        SateMenu menu = Menus.open(player, settings, false);
+        if (menu == null) return null;
 
-            menu.recreatable = sateMenu.recreatable;
-            return menu;
-        }
-        else if (this.recreatable != null)
-            return this.recreatable.reCreate(player);
-        else
-            return null;
+        menu.recreatable = this.recreatable;
+        return menu;
     }
 }
