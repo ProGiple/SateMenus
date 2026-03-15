@@ -21,9 +21,10 @@ public class Menus {
     private final Map<String, MenuSettings> menuSettings = new HashMap<>();
 
     public SateMenu open(Player player, MenuSettings settings, boolean bypassConditions) {
-        if (bypassConditions || settings.checkConditions(player, settings.openAction().conditions())) {
+        var openActions = settings.openAction();
+        if (bypassConditions || openActions == null || settings.checkConditions(player, openActions.conditions())) {
             SateMenu menu = open(player, settings);
-            settings.openAction().process(player, menu);
+            if (openActions != null) openActions.process(player, menu);
             return menu;
         }
 

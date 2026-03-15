@@ -1,0 +1,11 @@
+messages:
+  unregisterTemplateError: "Шаблона [id] не существует!"
+  unregisterMenuError: "Меню [id] не существует!"
+  unregisterAnimationError: "Анимации [id] не существует!"
+  unregisterTemplateSuccess: "Шаблон [id] успешно задерегистрирован!"
+  unregisterMenuSuccess: "Меню [id] успешно задерегистрировано!"
+  unregisterAnimationSuccess: "Анимация [id] успешно задерегистрирована!"
+  reload: "Плагин успешно перезагружен!"
+  menuIsNotExists: "Меню [id] не найдено!"
+  playerIsOffline: "Игрок [player] оффлайн!"
+  openMenuSuccess: "Меню [id] было успешно открыто для игрока [player]!"

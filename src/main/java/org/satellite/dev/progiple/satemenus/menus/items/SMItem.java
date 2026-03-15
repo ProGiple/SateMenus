@@ -45,7 +45,7 @@ public class SMItem extends Item implements Refreshable, UpdatableItem {
     }
 
     @Override
-    public Item onClick(InventoryClickEvent e) {
+    public SMItem onClick(InventoryClickEvent e) {
         Player player = (Player) e.getWhoClicked();
 
         IMenu menu = this.getMenu();

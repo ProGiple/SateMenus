@@ -1,6 +1,7 @@
 package org.satellite.dev.progiple.satemenus.menus.menus.impl;
 
 import lombok.Getter;
+import lombok.Setter;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -29,6 +30,7 @@ import org.satellite.dev.progiple.satemenus.menus.items.SMItem;
 import org.satellite.dev.progiple.satemenus.menus.menus.AnimatedMenu;
 import org.satellite.dev.progiple.satemenus.menus.menus.ISateMenu;
 import org.satellite.dev.progiple.satemenus.menus.menus.Recreatable;
+import org.satellite.dev.progiple.satemenus.menus.params.MenuConfiguredAction;
 import org.satellite.dev.progiple.satemenus.menus.params.MenuConfiguredItem;
 import org.satellite.dev.progiple.satemenus.menus.params.MenuSettings;
 import org.satellite.dev.progiple.satemenus.menus.params.animations.IAnimation;
@@ -42,6 +44,7 @@ public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMe
     private final Inventory inventory;
     private final MenuSettings settings;
     private final Set<IAnimation> playingAnimations;
+    @Setter
     protected Recreatable recreatable;
     public SateMenu(@NotNull Player player, MenuSettings settings, @Nullable Recreatable recreatable) {
         this.player = player;
@@ -107,9 +110,11 @@ public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMe
         this.playingAnimations.forEach(a -> a.stop(this));
         this.playingAnimations.clear();
 
-        if (this.settings.checkConditions(player, settings.closeAction().conditions()))
-            settings.closeAction().process(player, null);
-        else if (settings.closeAction().cancelEventIfError()) {
+        var closeAction = settings.closeAction();
+        if (closeAction == null || this.settings.checkConditions(player, closeAction.conditions())) {
+            if (closeAction != null) closeAction.process(player, null);
+        }
+        else if (closeAction.cancelEventIfError()) {
             Bukkit.getScheduler().runTaskLater(SateMenus.getInstance(), () -> {
                 MenuManager.openInventory(this);
             }, 4L);
