@@ -70,7 +70,13 @@ public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMe
 
     @Override
     public boolean back(Player player) {
-        if (this.recreatable != null) return this.recreatable.reCreate(player) != null;
+        if (this.recreatable != null) {
+            IMenu menu = this.recreatable.reCreate(player);
+            if (menu == null) return false;
+
+            MenuManager.openInventory(menu);
+            return true;
+        }
         return false;
     }
 
