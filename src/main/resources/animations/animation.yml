@@ -5,8 +5,9 @@ reservedItems:
     lore: []
 PLAY:
   0:
-    0: RESERVE1
-    1:
-      material: IRON_INGOT
+    0-53:
+      material: AIR
       displayName: ""
       lore: []
+  1:
+    0: REMOVE

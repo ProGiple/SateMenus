@@ -49,7 +49,6 @@ public record Template(@NotNull IConfig config,
 
     public static List<MenuConfiguredItem> loadItems(IConfig config, @Nullable Template template) {
         List<MenuConfiguredItem> list = new ArrayList<>();
-        Set<String> ids = new HashSet<>();
 
         ConfigurationSection section = config.getSection("items");
         if (section == null) return list;
@@ -57,10 +56,12 @@ public record Template(@NotNull IConfig config,
         for (String key : section.getKeys(false)) {
             MenuConfiguredItem item = MenuConfiguredItem.convert(section.getConfigurationSection(key));
             list.add(item);
-            ids.add(item.id());
         }
 
         if (template != null) {
+            Set<String> ids = new HashSet<>();
+            list.forEach(item -> ids.add(item.id()));
+
             List<MenuConfiguredItem> templateItems = template.items()
                     .stream()
                     .filter(i -> !ids.contains(i.id()))

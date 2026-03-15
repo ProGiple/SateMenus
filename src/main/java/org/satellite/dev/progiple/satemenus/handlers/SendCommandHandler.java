@@ -22,6 +22,6 @@ public class SendCommandHandler implements Listener {
                     return b != null && b;
                 })
                 .findAny().ifPresent(settings ->
-                        Menus.open(e.getPlayer(), settings, e.getPlayer().hasPermission("satemenus.openBypass")));
+                        Menus.open(e.getPlayer(), settings, false));
     }
 }

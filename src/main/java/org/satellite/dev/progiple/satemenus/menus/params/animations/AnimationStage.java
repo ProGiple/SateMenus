@@ -1,10 +1,14 @@
 package org.satellite.dev.progiple.satemenus.menus.params.animations;
 
 import lombok.Getter;
+import org.bukkit.Sound;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.inventory.ItemStack;
 import org.novasparkle.lunaspring.API.menus.ItemListMenu;
 import org.novasparkle.lunaspring.API.menus.items.Item;
+import org.novasparkle.lunaspring.API.util.utilities.AnnounceUtils;
 import org.novasparkle.lunaspring.API.util.utilities.LunaMath;
+import org.novasparkle.lunaspring.API.util.utilities.Utils;
 import org.satellite.dev.progiple.satemenus.SateMenus;
 import org.satellite.dev.progiple.satemenus.menus.items.AnimationItem;
 import org.satellite.dev.progiple.satemenus.menus.menus.AnimatedMenu;
@@ -60,14 +64,25 @@ public class AnimationStage {
                     .filter(i -> i instanceof AnimationItem && i.getSlot() == slot)
                     .findFirst()
                     .orElse(menu.findFirstItem(slot));
+
+            ItemStack itemStack = menu.getInventory().getItem(slot);
             if (section == null) {
                 if (item != null)
                     backItem(menu, item, true);
             }
             else {
                 menu.getItemList().remove(item);
-                item = new AnimationItem(section, slot, item);
-                menu.addItems(true, item);
+                var animationItem = new AnimationItem(section, slot, item, itemStack);
+                menu.addItems(true, animationItem);
+
+                Sound sound = Utils.getEnumValue(Sound.class, section.getString("sound"));
+                if (sound != null) {
+                    float volume = (float) section.getDouble("sound_volume", 1.0);
+                    AnnounceUtils.sound(menu.getPlayer(), sound, volume);
+
+                    animationItem.volume = volume;
+                    animationItem.sound = Utils.getEnumValue(Sound.class, section.getString("back_sound"));
+                }
             }
         });
     }
@@ -76,10 +91,17 @@ public class AnimationStage {
         menu.getItemList().remove(item);
         if (item instanceof AnimationItem animationItem) {
             Item prevItem = animationItem.getPrevItem();
-            if (prevItem == null)
-                item.remove(menu);
+            if (prevItem == null) {
+                if (animationItem.getPrevItemStack() != null)
+                    menu.getInventory().setItem(item.getSlot(), animationItem.getPrevItemStack());
+                else
+                    item.remove(menu);
+            }
             else
                 backItem(menu, prevItem, false);
+
+            if (animationItem.sound != null)
+                AnnounceUtils.sound(menu.getPlayer(), animationItem.sound, animationItem.volume);
         }
         else {
             if (firstIteration)

@@ -78,7 +78,7 @@ public class SMItem extends Item implements Refreshable, UpdatableItem {
     }
 
     protected void updateNative(Player target) {
-        this.setLore(new ArrayList<>(this.defaultLore));
-        this.replaceLore(l -> Utils.setPlaceholders(target, l.replace("[player]", target.getName())));
+        this.setLore(new ArrayList<>(this.defaultLore), "player-%-" + target.getName());
+        this.replaceLore(l -> Utils.setPlaceholders(target, l));
     }
 }

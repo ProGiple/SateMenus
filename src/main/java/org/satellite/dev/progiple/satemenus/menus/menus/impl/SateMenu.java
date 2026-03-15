@@ -43,6 +43,7 @@ public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMe
     private final Player player;
     private final Inventory inventory;
     private final MenuSettings settings;
+    private final Decoration decoration;
     private final Set<IAnimation> playingAnimations;
     @Setter
     protected Recreatable recreatable;
@@ -62,10 +63,12 @@ public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMe
         }
 
         if (settings.decorations() != null) {
-            Decoration decoration = new Decoration(settings.decorations(), inventory);
+            this.decoration = new Decoration(settings.decorations(), inventory);
             decoration.getDecorationItems().forEach(i -> i.replaceLore(l -> Utils.setPlaceholders(player, l)));
             decoration.insert(inventory);
         }
+        else
+            this.decoration = null;
     }
 
     @Override

@@ -92,6 +92,7 @@ public class MenuSettingsBuilder {
                 .stream()
                 .filter(Map.Entry::getValue)
                 .map(Map.Entry::getKey)
+                .filter(k -> !k.equals("menu"))
                 .toList();
         return new RegistrableMenuCommand(id, commandList);
     }

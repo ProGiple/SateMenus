@@ -21,6 +21,8 @@ public class Menus {
     private final Map<String, MenuSettings> menuSettings = new HashMap<>();
 
     public SateMenu open(Player player, MenuSettings settings, boolean bypassConditions) {
+        bypassConditions = bypassConditions || player.hasPermission("satemenus.openBypass");
+
         var openActions = settings.openAction();
         if (bypassConditions || openActions == null || settings.checkConditions(player, openActions.conditions())) {
             SateMenu menu = open(player, settings);
@@ -37,11 +39,11 @@ public class Menus {
 
     public SateMenu open(Player player, MenuSettings settings) {
         IMenu openedMenu = MenuManager.getActiveMenu(player);
-        Recreatable recreatabe = openedMenu instanceof Recreatable r ? r : null;
+        Recreatable recreatable = openedMenu instanceof Recreatable r ? r : null;
 
         SateMenu menu = settings.updatingTime() <= 0 ?
-                new SateMenu(player, settings, recreatabe) :
-                new UpdatableSateMenu(player, settings, recreatabe);
+                new SateMenu(player, settings, recreatable) :
+                new UpdatableSateMenu(player, settings, recreatable);
         MenuManager.openInventory(menu);
         return menu;
     }

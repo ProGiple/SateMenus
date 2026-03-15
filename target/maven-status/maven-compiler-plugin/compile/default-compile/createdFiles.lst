@@ -5,6 +5,7 @@ org\satellite\dev\progiple\satemenus\subcommands\ReloadSubCommand.class
 org\satellite\dev\progiple\satemenus\menus\items\AnimationItem.class
 org\satellite\dev\progiple\satemenus\menus\menus\ISateMenu.class
 org\satellite\dev\progiple\satemenus\SateMenus.class
+org\satellite\dev\progiple\satemenus\subcommands\MenuNoArgsSubCommand.class
 org\satellite\dev\progiple\satemenus\menus\params\templates\Template.class
 org\satellite\dev\progiple\satemenus\menus\params\MenuSettingsBuilder$1.class
 org\satellite\dev\progiple\satemenus\lunaActions\OpenMenuAction.class
