@@ -5,15 +5,19 @@ import org.bukkit.event.inventory.InventoryType;
 import org.novasparkle.lunaspring.API.commands.CommandInitializer;
 import org.novasparkle.lunaspring.API.util.service.managers.TaskManager;
 import org.novasparkle.lunaspring.API.util.utilities.AnnounceUtils;
+import org.novasparkle.lunaspring.API.util.utilities.reflection.AnnotationScanner;
+import org.novasparkle.lunaspring.API.util.utilities.reflection.ClassEntry;
 import org.novasparkle.lunaspring.LunaPlugin;
 import org.satellite.dev.progiple.satemenus.lunaActions.OpenMenuAction;
 import org.satellite.dev.progiple.satemenus.menus.Menus;
 import org.satellite.dev.progiple.satemenus.menus.params.animations.AnimationTask;
 import org.satellite.dev.progiple.satemenus.menus.params.animations.Animations;
+import org.satellite.dev.progiple.satemenus.menus.params.animations.actions.AnimationAction;
 import org.satellite.dev.progiple.satemenus.menus.params.templates.Templates;
 
 import java.io.File;
 import java.util.EnumSet;
+import java.util.Set;
 
 public final class SateMenus extends LunaPlugin {
     @Getter
@@ -26,6 +30,7 @@ public final class SateMenus extends LunaPlugin {
     public void onEnable() {
         super.onEnable();
         instance = this;
+        loadAnimationActions();
 
         if (!this.dirExists())
             this.loadFiles("animations/animation.yml", "menus/example.yml", "templates/template.yml");
@@ -48,5 +53,15 @@ public final class SateMenus extends LunaPlugin {
         Animations.loadFromDir(new File(instance.getDataFolder(), "animations/"));
         Templates.loadFromDir(new File(instance.getDataFolder(), "templates/"));
         Menus.loadFromDir(new File(instance.getDataFolder(), "menus/"));
+    }
+
+    private void loadAnimationActions() {
+        Set<ClassEntry<AnimationAction.Type>> entries = AnnotationScanner.findAnnotatedClasses(
+                this,
+                AnimationAction.Type.class,
+                "#.menus.params.animations.actions.impl");
+        for (ClassEntry<AnimationAction.Type> entry : entries) {
+            Animations.register(entry.getAnnotation().value(), entry.getClazz());
+        }
     }
 }

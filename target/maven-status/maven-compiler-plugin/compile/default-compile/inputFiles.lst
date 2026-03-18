@@ -1,23 +1,52 @@
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\lunaActions\OpenMenuAction.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\items\AnimationItem.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\templates\Template.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\menus\UpdatableSateMenu.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\animations\Animations.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\utils\RegistrableMenuCommand.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\items\SMItem.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\menus\AnimatedMenu.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\menus\Recreatable.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\MenuConfiguredItem.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\menus\SateMenu.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\animations\AnimationStage.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\Refreshable.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\animations\Animation.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\MenuSettings.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\utils\SateCache.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\MenuConfiguredAction.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\animations\AnimationTask.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\animations\IAnimation.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\templates\Templates.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\Menus.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\handlers\SendCommandHandler.java
-C:\Users\progi\IdeaProjects\forks\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\SateMenus.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\menus\ISateMenu.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\subcommands\OpenSubCommand.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\subcommands\UnregisterSubCommand.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\templates\Template.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\animations\Animation.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\MenuSettingsBuilder.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\handlers\SendCommandHandler.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\animations\AnimationStage.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\Menus.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\self\menusCreator\IGeneratorMenu.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\animations\Animations.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\self\menusCreator\main\MainEditMenu.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\self\menusCreator\absItems\InputTextButton.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\self\queries\Query.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\utils\RegistrableMenuCommand.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\templates\Templates.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\animations\AnimationTask.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\subcommands\ReloadSubCommand.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\ITemplated.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\self\menusCreator\GeneratorType.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\items\AnimationItem.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\lunaActions\OpenMenuAction.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\animations\IAnimation.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\self\menusCreator\storage\AStorageMenu.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\self\menusCreator\selectMenus\OnlySelectMenu.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\self\queries\Queries.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\self\Serializer.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\menus\AnimatedMenu.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\animations\actions\AbstractAnimationAction.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\MenuSettings.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\menus\Backable.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\menus\impl\UpdatableSateMenu.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\self\menusCreator\absItems\EditableButton.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\utils\SateCache.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\animations\actions\impl\PlaceAction.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\SateMenus.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\menus\impl\SateMenu.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\animations\actions\impl\RemoveAction.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\self\menusCreator\AbstractEditMenu.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\self\menusCreator\selectMenus\items\SelectItem.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\animations\actions\AnimationAction.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\items\SMItem.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\self\queries\impl\InputTextQuery.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\configs\Config.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\MenuConfiguredAction.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\subcommands\MenuNoArgsSubCommand.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\Refreshable.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\menus\Recreatable.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\menus\params\MenuConfiguredItem.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\self\menusCreator\absItems\ScrollingButton.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\self\menusCreator\storage\impl\DecorationsMenu.java
+D:\jetbrains\IntelliJ IDEA Community Edition 2025.1.2\projects\SateMenus\src\main\java\org\satellite\dev\progiple\satemenus\self\menusCreator\selectMenus\SelectAndAppendMenu.java

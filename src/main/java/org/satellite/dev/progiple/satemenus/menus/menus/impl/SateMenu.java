@@ -44,7 +44,8 @@ public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMe
     private final Inventory inventory;
     private final MenuSettings settings;
     private final Decoration decoration;
-    private final Set<IAnimation> playingAnimations;
+    @Setter
+    protected IAnimation playingAnimation;
     @Setter
     protected Recreatable recreatable;
     public SateMenu(@NotNull Player player, MenuSettings settings, @Nullable Recreatable recreatable) {
@@ -52,7 +53,6 @@ public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMe
         this.settings = settings;
         this.itemList = new LinkedList<>();
         this.recreatable = recreatable;
-        this.playingAnimations = new HashSet<>();
 
         String strTitle = ColorManager.color(Utils.setPlaceholders(player, settings.title().replace("[player]", player.getName())));
         Component title = Component.text(strTitle).toBuilder().build();
@@ -92,7 +92,7 @@ public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMe
     @Override
     public void onOpen(InventoryOpenEvent e) {
         for (MenuConfiguredItem item : settings.items()) {
-            if (settings.checkConditions(player, item.viewConditions())) {
+            if (!item.removal() && settings.checkConditions(player, item.viewConditions())) {
                 for (int slot : item.slots()) {
                     if (slot < 0) continue;
                     SMItem menuItem = new SMItem(item, slot);
@@ -122,8 +122,9 @@ public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMe
     public void onClose(InventoryCloseEvent e) {
         Player player = (Player) e.getPlayer();
 
-        this.playingAnimations.forEach(a -> a.stop(this));
-        this.playingAnimations.clear();
+        if (this.playingAnimation != null) {
+            this.playingAnimation.stop(this);
+        }
 
         var closeAction = settings.closeAction();
         if (closeAction == null || this.settings.checkConditions(player, closeAction.conditions())) {

@@ -6,6 +6,7 @@ import org.novasparkle.lunaspring.API.configuration.IConfig;
 import org.novasparkle.lunaspring.API.util.service.managers.TaskManager;
 import org.satellite.dev.progiple.satemenus.menus.items.AnimationItem;
 import org.satellite.dev.progiple.satemenus.menus.menus.AnimatedMenu;
+import org.satellite.dev.progiple.satemenus.menus.params.animations.actions.impl.RemoveAction;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,13 +14,13 @@ import java.util.Map;
 @Getter
 public class Animation implements IAnimation {
     private final AnimationStage playStage;
-    private final Map<String, ConfigurationSection> reservedItems;
+    private final Map<String, ConfigurationSection> reservedActions;
     public Animation(IConfig config) {
-        this.reservedItems = new HashMap<>();
+        this.reservedActions = new HashMap<>();
 
-        ConfigurationSection reservedItems = config.getSection("reservedItems");
+        ConfigurationSection reservedItems = config.getSection("reservedActions");
         for (String key : reservedItems.getKeys(false)) {
-            this.reservedItems.put(key, reservedItems.getConfigurationSection(key));
+            this.reservedActions.put(key, reservedItems.getConfigurationSection(key));
         }
 
         this.playStage = new AnimationStage(this, config.getSection("PLAY"));
@@ -27,16 +28,16 @@ public class Animation implements IAnimation {
 
     @Override
     public void play(AnimatedMenu menu) {
-        if (!menu.getPlayingAnimations().contains(this))
+        if (menu.getPlayingAnimation() == null)
             this.playStage.play(menu);
     }
 
     @Override
     public void stop(AnimatedMenu menu) {
-        menu.getPlayingAnimations().remove(this);
+        menu.setPlayingAnimation(null);
         TaskManager.stopAll(AnimationTask.class, r -> r.getMenu().equals(menu) && r.getStage().equals(playStage));
         menu.findItems(AnimationItem.class).forEach(i -> {
-            playStage.backItem(menu, i, true);
+            RemoveAction.backItem(menu, i, i.getItemStack(), i.getSlot(), true);
         });
     }
 }

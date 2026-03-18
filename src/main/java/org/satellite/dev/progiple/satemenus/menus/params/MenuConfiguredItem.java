@@ -15,7 +15,8 @@ public record MenuConfiguredItem(@NotNull String id,
                                  @Nullable MenuConfiguredAction anyClick,
                                  @Nullable MenuConfiguredAction rightClick,
                                  @Nullable MenuConfiguredAction leftClick,
-                                 @Nullable SateCache cache) {
+                                 @Nullable SateCache cache,
+                                 boolean removal) {
     public static MenuConfiguredItem convert(ConfigurationSection section) {
         List<Integer> slots = Utils.getSlotList(section.getStringList("slots"));
         if (slots.isEmpty()) slots.add(section.getInt("slot", -1));
@@ -31,7 +32,8 @@ public record MenuConfiguredItem(@NotNull String id,
                 MenuConfiguredAction.convert(section.getConfigurationSection("any_click")),
                 MenuConfiguredAction.convert(section.getConfigurationSection("right_click")),
                 MenuConfiguredAction.convert(section.getConfigurationSection("left_click")),
-                cache
+                cache,
+                section.getBoolean("removal")
         );
     }
 }

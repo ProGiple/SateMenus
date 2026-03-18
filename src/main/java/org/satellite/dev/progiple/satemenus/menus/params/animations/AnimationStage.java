@@ -1,114 +1,103 @@
 package org.satellite.dev.progiple.satemenus.menus.params.animations;
 
 import lombok.Getter;
-import org.bukkit.Sound;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
-import org.novasparkle.lunaspring.API.menus.ItemListMenu;
 import org.novasparkle.lunaspring.API.menus.items.Item;
-import org.novasparkle.lunaspring.API.util.utilities.AnnounceUtils;
 import org.novasparkle.lunaspring.API.util.utilities.LunaMath;
-import org.novasparkle.lunaspring.API.util.utilities.Utils;
-import org.satellite.dev.progiple.satemenus.SateMenus;
-import org.satellite.dev.progiple.satemenus.menus.items.AnimationItem;
+import org.novasparkle.lunaspring.API.util.utilities.TripleFunction;
 import org.satellite.dev.progiple.satemenus.menus.menus.AnimatedMenu;
+import org.satellite.dev.progiple.satemenus.menus.params.animations.actions.AnimationAction;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 @Getter
 public class AnimationStage {
+    public static Supplier<Collection<AnimationAction>> ACTION_COLLECTION_FABRIC = ArrayList::new;
+    public static TripleFunction<AnimationStage, ConfigurationSection, Byte, AnimationAction> ACTION_FABRIC = (s, c, b) -> {
+        String type = c.getString("type");
+        Class<?> clazz = Animations.getAnimationAction(type);
+        try {
+            return (AnimationAction) clazz.getDeclaredConstructor(
+                            AnimationStage.class,
+                            byte.class,
+                            ConfigurationSection.class)
+                    .newInstance(s, b, c);
+        } catch (Exception e) {
+            return null;
+        }
+    };
+    public static Function<String, Integer> KEY_TO_MILLIS_FABRIC = k -> {
+        if (k.startsWith("~"))
+            return LunaMath.toInt(k.substring(1));
+
+        return LunaMath.toInt(k) * 50;
+    };
+
     private final Animation animation;
-    private final Map<Integer, Map<Byte, ConfigurationSection>> map;
+    private final Map<Integer, Collection<AnimationAction>> map;
     public AnimationStage(Animation animation, ConfigurationSection section) {
         this.animation = animation;
         this.map = new HashMap<>();
 
         for (String key : section.getKeys(false)) {
             ConfigurationSection tickSection = section.getConfigurationSection(key);
-            int tick = LunaMath.toInt(key);
+            int timeMillis = KEY_TO_MILLIS_FABRIC.apply(key);
 
-            Map<Byte, ConfigurationSection> map = new HashMap<>();
+            Collection<AnimationAction> actions = ACTION_COLLECTION_FABRIC.get();
             for (String tickSectionKey : tickSection.getKeys(false)) {
                 ConfigurationSection itemSection = tickSection.getConfigurationSection(tickSectionKey);
                 if (itemSection == null) {
-                    String itemId = tickSection.getString(tickSectionKey);
-                    itemSection = animation.getReservedItems().get(itemId);
+                    String id = tickSection.getString(tickSectionKey);
+                    itemSection = animation.getReservedActions().get(id);
+                    if (itemSection == null) continue;
                 }
 
                 String[] place = tickSectionKey.split("-");
+
                 if (place.length == 1)
-                    map.put(LunaMath.toByte(place[0]), itemSection);
-                else
-                    for (byte i = LunaMath.toByte(place[0]); i <= LunaMath.toByte(place[1]); i++) {
-                        map.put(i, itemSection);
+                    actions.add(ACTION_FABRIC.apply(this, itemSection, LunaMath.toByte(place[0])));
+                else {
+                    byte firstSlot = LunaMath.toByte(place[0]);
+
+                    AnimationAction action = ACTION_FABRIC.apply(this, itemSection, firstSlot);
+                    if (action == null) continue;
+
+                    actions.add(action);
+                    for (byte i = ++firstSlot; i <= LunaMath.toByte(place[1]); i++) {
+                        actions.add(action.clone(i));
                     }
+                }
             }
 
-            this.map.put(tick, map);
+            this.map.put(timeMillis, actions);
         }
     }
 
     public void play(AnimatedMenu menu) {
-        menu.getPlayingAnimations().add(animation);
+        menu.setPlayingAnimation(this.animation);
         AnimationTask task = new AnimationTask(this, menu);
-        task.runTaskAsynchronously(SateMenus.getInstance());
+        task.handle();
     }
 
-    public void processTick(AnimatedMenu menu, int tick) {
-        Map<Byte, ConfigurationSection> map = this.map.get(tick);
-        if (map == null) return;
+    public void processTick(AnimatedMenu menu, int timeMillis) {
+        Collection<AnimationAction> actions = map.get(timeMillis);
+        if (actions == null) return;
 
-        map.forEach((slot, section) -> {
-            Item item = menu.getItemList()
-                    .stream()
-                    .filter(i -> i instanceof AnimationItem && i.getSlot() == slot)
-                    .findFirst()
-                    .orElse(menu.findFirstItem(slot));
+        short index = 0;
+        int invSize = menu.getInventory().getSize();
+        for (AnimationAction action : actions) {
+            if (action == null) continue;
+
+            byte slot = action.getSlot();
+            if (slot >= invSize) continue;
 
             ItemStack itemStack = menu.getInventory().getItem(slot);
-            if (section == null) {
-                if (item != null)
-                    backItem(menu, item, true);
-            }
-            else {
-                menu.getItemList().remove(item);
-                var animationItem = new AnimationItem(section, slot, item, itemStack);
-                menu.addItems(true, animationItem);
+            Item item = menu.findFirstItem(slot);
 
-                Sound sound = Utils.getEnumValue(Sound.class, section.getString("sound"));
-                if (sound != null) {
-                    float volume = (float) section.getDouble("sound_volume", 1.0);
-                    AnnounceUtils.sound(menu.getPlayer(), sound, volume);
-
-                    animationItem.volume = volume;
-                    animationItem.sound = Utils.getEnumValue(Sound.class, section.getString("back_sound"));
-                }
-            }
-        });
-    }
-
-    public void backItem(ItemListMenu menu, Item item, boolean firstIteration) {
-        menu.getItemList().remove(item);
-        if (item instanceof AnimationItem animationItem) {
-            Item prevItem = animationItem.getPrevItem();
-            if (prevItem == null) {
-                if (animationItem.getPrevItemStack() != null)
-                    menu.getInventory().setItem(item.getSlot(), animationItem.getPrevItemStack());
-                else
-                    item.remove(menu);
-            }
-            else
-                backItem(menu, prevItem, false);
-
-            if (animationItem.sound != null)
-                AnnounceUtils.sound(menu.getPlayer(), animationItem.sound, animationItem.volume);
-        }
-        else {
-            if (firstIteration)
-                item.remove(menu);
-            else {
-                menu.addItems(true, item);
-            }
+            action.execute(menu, timeMillis, index++, item, itemStack);
         }
     }
 }

@@ -54,8 +54,11 @@ public record Template(@NotNull IConfig config,
         if (section == null) return list;
 
         for (String key : section.getKeys(false)) {
-            MenuConfiguredItem item = MenuConfiguredItem.convert(section.getConfigurationSection(key));
-            list.add(item);
+            ConfigurationSection itemSection = section.getConfigurationSection(key);
+            if (itemSection != null) {
+                MenuConfiguredItem item = MenuConfiguredItem.convert(itemSection);
+                list.add(item);
+            }
         }
 
         if (template != null) {

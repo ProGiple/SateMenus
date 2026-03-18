@@ -6,5 +6,6 @@ import org.satellite.dev.progiple.satemenus.menus.params.animations.IAnimation;
 import java.util.Collection;
 
 public interface AnimatedMenu extends ItemListMenu {
-    Collection<IAnimation> getPlayingAnimations();
+    IAnimation getPlayingAnimation();
+    void setPlayingAnimation(IAnimation animation);
 }

@@ -1,4 +1,4 @@
-reservedItems:
+reservedActions:
   RESERVE1:
     material: STONE
     displayName: ""
@@ -9,5 +9,26 @@ PLAY:
       material: AIR
       displayName: ""
       lore: []
-  1:
-    0: REMOVE
+      sound:
+        type: UI_BUTTON_CLICK
+        volume: 1.0
+        single: true
+  3:
+    0-8:
+      type: remove
+  6:
+    9-17:
+      type: remove
+  9:
+    18-26:
+      type: remove
+  12:
+    27-35:
+      type: remove
+  15:
+    36-44:
+      type: remove
+  18:
+    45-53:
+      type: remove
+  21: {}

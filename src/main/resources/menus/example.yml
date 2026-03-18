@@ -4,7 +4,7 @@ title: "&0Магазин для %player_name%"
 type: CHEST
 updatingTime: 0
 rows: 6
-template: example
+template: template
 clickCooldownTicks: 5
 open:
   conditions: { }
@@ -14,15 +14,14 @@ close:
   conditions: { }
   actions: [ ]
 animations:
-  - example
-decorations: {}
+  - animation
 items:
   item0:
     material: COMPASS
     displayName: "Отображаемое имя"
     lore: []
     slots:
-      - 1-3
+      - 4
     view_conditions: {}
     any_click:
       conditions: {}
