@@ -14,6 +14,9 @@ import org.satellite.dev.progiple.satemenus.menus.params.animations.AnimationTas
 import org.satellite.dev.progiple.satemenus.menus.params.animations.Animations;
 import org.satellite.dev.progiple.satemenus.menus.params.animations.actions.AnimationAction;
 import org.satellite.dev.progiple.satemenus.menus.params.templates.Templates;
+import org.satellite.dev.progiple.satemenus.self.menusCreator.converter.Converters;
+import org.satellite.dev.progiple.satemenus.self.menusCreator.converter.impl.ContainerConverter;
+import org.satellite.dev.progiple.satemenus.self.menusCreator.menus.MenuId;
 
 import java.io.File;
 import java.util.EnumSet;
@@ -34,13 +37,13 @@ public final class SateMenus extends LunaPlugin {
 
         if (!this.dirExists())
             this.loadFiles("animations/animation.yml", "menus/example.yml", "templates/template.yml");
-        this.saveDefaultConfig();
+        loadConfigs();
 
         AnnounceUtils.registerAction(new OpenMenuAction());
         loadData();
 
-        CommandInitializer.initialize(this, "#.subcommands");
-        this.processListeners("#.handlers");
+        CommandInitializer.initialize(this, "#.self.subcommands");
+        this.processListeners("#.self.handlers");
     }
 
     @Override
@@ -49,10 +52,25 @@ public final class SateMenus extends LunaPlugin {
         TaskManager.stopAll(AnimationTask.class, null);
     }
 
+    private void loadConfigs() {
+        saveDefaultConfig();
+
+        Set<ClassEntry<MenuId>> entries = AnnotationScanner.findAnnotatedClasses(
+                this,
+                MenuId.class,
+                "#.self.menusCreator.menus");
+        for (var entry : entries) {
+            this.loadFile("toolsMenus/" + entry.getAnnotation().value() + ".yml");
+        }
+    }
+
     public static void loadData() {
         Animations.loadFromDir(new File(instance.getDataFolder(), "animations/"));
         Templates.loadFromDir(new File(instance.getDataFolder(), "templates/"));
         Menus.loadFromDir(new File(instance.getDataFolder(), "menus/"));
+
+        Converters.register(new ContainerConverter());
+        //Converters.register(new DeluxeMenusConverter());
     }
 
     private void loadAnimationActions() {

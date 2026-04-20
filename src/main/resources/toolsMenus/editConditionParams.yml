@@ -1,0 +1,36 @@
+title: "&0Редактирование параметров условия"
+rows: 6
+decorations:
+  peregorodka:
+    material: BLUE_STAINED_GLASS
+    displayName: "{S}Перегородка"
+    slots:
+      - "36-44"
+items:
+  APPEND_ITEM:
+    displayName: "{S}[✎] &fДобавить параметр"
+    lore: []
+    material: GLOW_ITEM_FRAME
+    slot: 0
+  SELECT_ITEM:
+    displayName: "{S}[✎] &fИзменить параметр"
+    lore:
+      - " "
+      - "{SP} &fКлюч: {S}[key]"
+      - "{SP} &fЗначение: {S}[value]"
+      - " "
+      - "{SP} {S}ЛКМ &f- ввести новое значение"
+      - "{SP} {S}ПКМ &f- изменить ключ"
+      - " "
+    material: ITEM_FRAME
+    slot: 1
+    editMessages:
+      - "[TITLE] {S}[🛈] <S> &fВведите значение в чат: "
+      - "[SUGGESTCOMMAND] {SP} &fВведите новое значение в чат *%*&c[Отмена]*%*cancel*%*"
+  BACK_BUTTON:
+    displayName: "{E}Вернуться"
+    lore: [ ]
+    material: BARRIER
+    slot: 49
+order:
+  - 0-35

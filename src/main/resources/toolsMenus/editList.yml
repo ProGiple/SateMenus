@@ -1,0 +1,30 @@
+title: "&0Редактирование строк"
+rows: 6
+decorations: 
+  peregorodka:
+    material: BLUE_STAINED_GLASS
+    displayName: "{S}Перегородка"
+    slots:
+      - "36-44"
+items:
+  APPEND_ITEM:
+    displayName: "{S}[✎] &fДобавить строку"
+    lore: []
+    material: GLOW_ITEM_FRAME
+  SELECT_ITEM:
+    displayName: "{S}[✎] &fИзменить строку"
+    lore:
+      - " "
+      - "{SP} &fСейчас: [line]"
+      - " "
+    material: ITEM_FRAME
+    editMessages:
+      - "[TITLE] {S}[🛈] <S> &fВведите значение в чат: "
+      - "[SUGGESTCOMMAND] {SP} &fВведите новое значение в чат *%*&c[Отмена]*%*cancel*%*"
+  BACK_BUTTON:
+    displayName: "{E}Вернуться"
+    lore: [ ]
+    material: BARRIER
+    slot: 49
+order:
+  - 0-35

@@ -1,5 +1,6 @@
 package org.satellite.dev.progiple.satemenus.menus.params.templates;
 
+import lombok.Getter;
 import lombok.experimental.UtilityClass;
 import org.novasparkle.lunaspring.API.configuration.IConfig;
 import org.novasparkle.lunaspring.API.util.utilities.Utils;
@@ -12,6 +13,7 @@ import java.util.Set;
 
 @UtilityClass
 public class Templates {
+    @Getter
     private final Set<Template> templates = new HashSet<>();
 
     public Template getTemplate(String id) {

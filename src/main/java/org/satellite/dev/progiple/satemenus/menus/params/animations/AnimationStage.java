@@ -3,6 +3,7 @@ package org.satellite.dev.progiple.satemenus.menus.params.animations;
 import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.novasparkle.lunaspring.API.menus.items.Item;
 import org.novasparkle.lunaspring.API.util.utilities.LunaMath;
 import org.novasparkle.lunaspring.API.util.utilities.TripleFunction;
@@ -15,8 +16,8 @@ import java.util.function.Supplier;
 
 @Getter
 public class AnimationStage {
-    public static Supplier<Collection<AnimationAction>> ACTION_COLLECTION_FABRIC = ArrayList::new;
-    public static TripleFunction<AnimationStage, ConfigurationSection, Byte, AnimationAction> ACTION_FABRIC = (s, c, b) -> {
+    public static @NotNull Supplier<@NotNull Collection<AnimationAction>> ACTION_COLLECTION_FABRIC = ArrayList::new;
+    public static @NotNull TripleFunction<AnimationStage, ConfigurationSection, Byte, AnimationAction> ACTION_FABRIC = (s, c, b) -> {
         String type = c.getString("type");
         Class<?> clazz = Animations.getAnimationAction(type);
         try {
@@ -95,7 +96,7 @@ public class AnimationStage {
             if (slot >= invSize) continue;
 
             ItemStack itemStack = menu.getInventory().getItem(slot);
-            Item item = menu.findFirstItem(slot);
+            Item item = menu.findFirstItemAsync(slot);
 
             action.execute(menu, timeMillis, index++, item, itemStack);
         }

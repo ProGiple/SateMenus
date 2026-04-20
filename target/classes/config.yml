@@ -1,3 +1,8 @@
+storageEdit:
+  title: "&0Редактирование предметов"
+scrollingEditFormats:
+  selected: "{S} • [element]"
+  notSelected: "&7 • &f[element]"
 messages:
   unregisterTemplateError: "Шаблона [id] не существует!"
   unregisterMenuError: "Меню [id] не существует!"
@@ -9,3 +14,8 @@ messages:
   menuIsNotExists: "Меню [id] не найдено!"
   playerIsOffline: "Игрок [player] оффлайн!"
   openMenuSuccess: "Меню [id] было успешно открыто для игрока [player]!"
+  successfulMenuBuild: "Вы успешно создали новое меню [id]!"
+  successfulTemplateBuild: "Вы успешно создали новый шаблон [id]!"
+  converterIsNull: "Конвертер [id] не найден!"
+  converterChestIsNull: "Вы должны обязательно посмотреть на хранилище перед конвертацией!"
+  deluxeMenusFileIsNull: "Файл меню DeluxeMenus не существует!"

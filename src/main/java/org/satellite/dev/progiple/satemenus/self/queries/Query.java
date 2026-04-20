@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 
 @FunctionalInterface
 public interface Query<E> {
-    void request(E object);
+    boolean request(E object);
 
     default void register(UUID uuid) {
         Queries.register(uuid, this);

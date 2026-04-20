@@ -1,0 +1,33 @@
+title: "&0Выбор анимаций"
+rows: 6
+decorations: 
+  peregorodka:
+    material: BLUE_STAINED_GLASS
+    displayName: "{S}Перегородка"
+    slots:
+      - "36-44"
+items:
+  SELECT_ITEM:
+    displayName: "{S}[✎] &fВключить анимацию"
+    lore:
+      - " "
+      - "{SP} &fИдентификатор: {S}[id]"
+      - "{SP} &fСтатус: {E}Не выбрана"
+      - " "
+    material: RED_WOOL
+    slot: 0
+    ifEnabled:
+      displayName: "{S}[✎] &fВыключить анимацию"
+      lore:
+        - " "
+        - "{SP} &fИдентификатор: {S}[id]"
+        - "{SP} &fСтатус: {L}Выбрана"
+        - " "
+      material: LIME_WOOL
+  BACK_BUTTON:
+    displayName: "{E}Вернуться"
+    lore: [ ]
+    material: BARRIER
+    slot: 49
+order:
+  - 0-35

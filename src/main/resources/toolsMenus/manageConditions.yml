@@ -1,0 +1,30 @@
+title: "&0Редактирование условий"
+rows: 6
+decorations:
+  peregorodka:
+    material: BLUE_STAINED_GLASS
+    displayName: "{S}Перегородка"
+    slots:
+      - "36-44"
+items:
+  SELECT_OPERATION_ITEM:
+    displayName: "{S}[✎] &fВыбор операции"
+    lore:
+      - "[elements]"
+    material: END_PORTAL_FRAME
+    slot: 0
+  APPEND_ITEM:
+    displayName: "{S}[✎] &fДобавить условие"
+    lore: [ ]
+    material: ITEM_FRAME
+  SELECT_ITEM:
+    displayName: "{S}[✎] &fРедактировать условие"
+    lore: [ ]
+    material: GLOW_ITEM_FRAME
+  BACK_BUTTON:
+    displayName: "{E}Вернуться"
+    lore: [ ]
+    material: BARRIER
+    slot: 49
+order:
+  - 0-35

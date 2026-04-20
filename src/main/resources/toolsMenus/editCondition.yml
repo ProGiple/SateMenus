@@ -1,0 +1,30 @@
+title: "&0Редактирование условия"
+rows: 6
+decorations:
+  peregorodka:
+    material: BLUE_STAINED_GLASS
+    displayName: "{S}Перегородка"
+    slots:
+      - "36-44"
+items:
+  CHANGE_TYPE_ITEM:
+    displayName: "{S}[✎] &fВыбрать тип условия"
+    lore:
+      - "[elements]"
+    material: END_PORTAL_FRAME
+    slot: 20
+  TO_MANAGE_PARAMS_ITEM:
+    displayName: "{S}[✎] &fИзменить параметры условия"
+    lore: [ ]
+    material: STRUCTURE_BLOCK
+    slot: 22
+  TO_EDIT_ERROR_ACTIONS:
+    displayName: "{S}[✎] &fРедактировать действия при ошибке"
+    lore: [ ]
+    material: REDSTONE_BLOCK
+    slot: 24
+  BACK_BUTTON:
+    displayName: "{E}Вернуться"
+    lore: [ ]
+    material: BARRIER
+    slot: 49

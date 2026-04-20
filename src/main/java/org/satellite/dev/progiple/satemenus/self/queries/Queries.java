@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 @UtilityClass
 public class Queries {
-    private final Cache<UUID, Query<?>> cache = new Cache<>(300, TimeUnit.SECONDS);
+    private final Cache<UUID, Query<?>> cache = new Cache<>(5, TimeUnit.MINUTES);
 
     public void register(UUID uuid, Query<?> query) {
         cache.put(uuid, query);
@@ -29,7 +29,7 @@ public class Queries {
         keysForRemoval.forEach(cache::remove);
     }
 
-    public <E extends Query<E>> E getQuery(Class<E> clazz, UUID uuid) {
+    public <E extends Query<?>> E getQuery(Class<E> clazz, UUID uuid) {
         Query<?> query = cache.getIfPresent(uuid);
         if (query == null || !clazz.isAssignableFrom(query.getClass()))
             return null;

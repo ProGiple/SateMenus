@@ -1,6 +1,7 @@
 package org.satellite.dev.progiple.satemenus.menus.items;
 
 import lombok.Getter;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.jetbrains.annotations.NotNull;
@@ -14,8 +15,8 @@ import org.novasparkle.lunaspring.API.menus.updatable.UpdatableItem;
 import org.novasparkle.lunaspring.API.util.utilities.Utils;
 import org.satellite.dev.progiple.satemenus.menus.Refreshable;
 import org.satellite.dev.progiple.satemenus.menus.menus.impl.SateMenu;
-import org.satellite.dev.progiple.satemenus.menus.params.MenuConfiguredAction;
-import org.satellite.dev.progiple.satemenus.menus.params.MenuConfiguredItem;
+import org.satellite.dev.progiple.satemenus.menus.params.actions.MenuConfiguredAction;
+import org.satellite.dev.progiple.satemenus.menus.items.configured.MenuConfiguredItem;
 import org.satellite.dev.progiple.satemenus.utils.SateCache;
 
 import java.util.ArrayList;
@@ -80,5 +81,13 @@ public class SMItem extends Item implements Refreshable, UpdatableItem {
     protected void updateNative(Player target) {
         this.setLore(new ArrayList<>(this.defaultLore), "player-%-" + target.getName());
         this.replaceLore(l -> Utils.setPlaceholders(target, l));
+
+        this.setDisplayName(Utils.setPlaceholders(target, this.defaultName), "player-%-" + target.getName());
+
+        String strMaterial = configuredItem.section().getString("material", "STONE");
+        strMaterial = Utils.setPlaceholders(target, Utils.applyReplacements(strMaterial, "player-%-" + target.getName()));
+        Material material = Material.matchMaterial(strMaterial);
+        if (material == null) material = Material.STONE;
+        this.setMaterial(material);
     }
 }

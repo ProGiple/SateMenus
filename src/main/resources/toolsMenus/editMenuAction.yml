@@ -1,0 +1,44 @@
+title: "&0Редактирование действий"
+rows: 6
+decorations:
+  peregorodka:
+    material: BLUE_STAINED_GLASS
+    displayName: "{S}Перегородка"
+    slots:
+      - "36-44"
+items:
+  EDIT_ACTIONS_BUTTON:
+    displayName: "{S}[✎] &fРедактирование действий"
+    lore: []
+    material: JIGSAW
+    slot: 20
+  EDIT_CONDITIONS_BUTTON:
+    displayName: "{S}[✎] &fРедактирование условий"
+    lore: [ ]
+    material: REPEATING_COMMAND_BLOCK
+    slot: 22
+  CHANGE_INVOKE_STATUS_BUTTON:
+    displayName: "{S}[✎] &fВключить отмену срабатывания"
+    lore: 
+      - " "
+      - "{SP} Сейчас, если проверка условий"
+      - "{SP} Покажет, что чего-то у игрока"
+      - "{SP} Не хватает, то действие всё"
+      - "{SP} Равно будет выполнено!"
+      - " "
+    material: RED_WOOL
+    slot: 24
+    ifAllowed:
+      displayName: "{S}[✎] &fВыключить отмену срабатывания"
+      lore:
+        - " "
+        - "{SP} Сейчас, если проверка условий"
+        - "{SP} Покажет, что чего-то у игрока"
+        - "{SP} Не хватает, то действия не будет"
+        - " "
+      material: GREEN_WOOL
+  BACK_BUTTON:
+    displayName: "{E}Вернуться"
+    lore: [ ]
+    material: BARRIER
+    slot: 49

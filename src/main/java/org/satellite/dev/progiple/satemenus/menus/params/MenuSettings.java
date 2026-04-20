@@ -1,7 +1,6 @@
 package org.satellite.dev.progiple.satemenus.menus.params;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -13,19 +12,27 @@ import org.novasparkle.lunaspring.API.configuration.IConfig;
 import org.novasparkle.lunaspring.API.menus.MenuManager;
 import org.novasparkle.lunaspring.API.util.service.managers.ColorManager;
 import org.novasparkle.lunaspring.API.util.utilities.Utils;
+import org.satellite.dev.progiple.satemenus.menus.items.configured.MenuConfiguredItem;
 import org.satellite.dev.progiple.satemenus.menus.menus.ISateMenu;
+import org.satellite.dev.progiple.satemenus.menus.params.actions.MenuConfiguredAction;
 import org.satellite.dev.progiple.satemenus.menus.params.animations.IAnimation;
 import org.satellite.dev.progiple.satemenus.menus.params.animations.Animations;
 import org.satellite.dev.progiple.satemenus.menus.params.templates.Template;
 import org.satellite.dev.progiple.satemenus.menus.params.templates.Templates;
+import org.satellite.dev.progiple.satemenus.self.menusCreator.MenuSettingsBuilder;
 import org.satellite.dev.progiple.satemenus.utils.RegistrableMenuCommand;
 import org.satellite.dev.progiple.satemenus.utils.SateCache;
 
 import java.util.*;
 import java.util.function.Function;
 
-@Getter @Accessors(fluent = true) @RequiredArgsConstructor
+@Getter @Accessors(fluent = true)
 public class MenuSettings implements ITemplated {
+    public static final Set<InventoryCloseEvent.Reason> VALID_REASONS = EnumSet.of(
+            InventoryCloseEvent.Reason.PLUGIN, InventoryCloseEvent.Reason.DEATH,
+            InventoryCloseEvent.Reason.DISCONNECT
+    );
+
     private final IConfig config;
     private final String id;
     private final Map<String, Boolean> commands;
@@ -60,7 +67,7 @@ public class MenuSettings implements ITemplated {
         this.decorations = loadParameter(config.getSection("decorations"), Template::decorations);
 
         Integer clickCooldownTicks = loadParameter(Template.getInt(config.getString("clickCooldownTicks")), Template::clickCooldownTicks);
-        if (clickCooldownTicks == null || clickCooldownTicks == 0)
+        if (clickCooldownTicks == null || clickCooldownTicks <= 0)
             this.cooldownCache = null;
         else
             this.cooldownCache = new SateCache(clickCooldownTicks);
@@ -112,5 +119,25 @@ public class MenuSettings implements ITemplated {
 
     public void load() {
         this.registrableCommand.register(this);
+    }
+
+    @Override
+    public List<String> getAnimationIds() {
+        return config.getStringList("animations");
+    }
+
+    @Override
+    public Integer clickCooldownTicks() {
+        return cooldownCache == null ? 0 : (int) cooldownCache.getCooldown();
+    }
+
+    @Override
+    public Integer updatingTime() {
+        return updatingTime;
+    }
+
+    @Override
+    public Integer rows() {
+        return rows;
     }
 }

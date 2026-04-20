@@ -19,6 +19,7 @@ public class RemoveAction extends AbstractAnimationAction {
 
     @Override
     public void execute(AnimatedMenu menu, int timeMillis, short index, @Nullable Item item, @Nullable ItemStack itemStack) {
+        if (nullSkip(itemStack, item)) return;
         backItem(menu, item, itemStack, slot, true);
         super.execute(menu, timeMillis, index, item, itemStack);
     }

@@ -3,7 +3,9 @@ package org.satellite.dev.progiple.satemenus.menus;
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.novasparkle.lunaspring.API.configuration.IConfig;
+import org.novasparkle.lunaspring.API.menus.AMenu;
 import org.novasparkle.lunaspring.API.menus.IMenu;
 import org.novasparkle.lunaspring.API.menus.MenuManager;
 import org.satellite.dev.progiple.satemenus.menus.menus.Recreatable;
@@ -25,7 +27,7 @@ public class Menus {
 
         var openActions = settings.openAction();
         if (bypassConditions || openActions == null || settings.checkConditions(player, openActions.conditions())) {
-            SateMenu menu = open(player, settings);
+            SateMenu menu = openBypassed(player, settings);
             if (openActions != null) openActions.process(player, menu);
             return menu;
         }
@@ -34,17 +36,28 @@ public class Menus {
             return null;
         }
 
-        return open(player, settings);
+        return openBypassed(player, settings);
     }
 
     public SateMenu open(Player player, MenuSettings settings) {
+        return open(player, settings, false);
+    }
+
+    public SateMenu openBypassed(Player player, MenuSettings settings) {
         IMenu openedMenu = MenuManager.getActiveMenu(player);
-        Recreatable recreatable = openedMenu instanceof Recreatable r ? r : null;
+
+        Recreatable recreatable;
+        if (openedMenu instanceof Recreatable r)
+            recreatable = r;
+        else if (openedMenu instanceof AMenu a)
+            recreatable = a::copy;
+        else
+            recreatable = null;
 
         SateMenu menu = settings.updatingTime() <= 0 ?
                 new SateMenu(player, settings, recreatable) :
                 new UpdatableSateMenu(player, settings, recreatable);
-        MenuManager.openInventory(menu);
+        menu.open();
         return menu;
     }
 

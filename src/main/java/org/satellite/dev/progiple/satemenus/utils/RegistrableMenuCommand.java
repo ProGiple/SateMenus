@@ -41,7 +41,7 @@ public class RegistrableMenuCommand extends Command {
             return true;
         }
 
-        Menus.open(player, menu, player.hasPermission("satemenus.openBypass"));
+        Menus.open(player, menu, false);
         return true;
     }
 

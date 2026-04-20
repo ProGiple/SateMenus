@@ -16,7 +16,7 @@ public class OpenMenuAction extends PlayerMessageAction {
     public void execute(Player player, String s) {
         MenuSettings settings = Menus.getSettings(s);
         if (settings != null) {
-            Bukkit.getScheduler().runTask(SateMenus.getInstance(), () -> Menus.open(player, settings));
+            Bukkit.getScheduler().runTask(SateMenus.getInstance(), () -> Menus.openBypassed(player, settings));
         }
     }
 }

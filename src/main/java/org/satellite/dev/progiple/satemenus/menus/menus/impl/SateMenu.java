@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.novasparkle.lunaspring.API.menus.IMenu;
-import org.novasparkle.lunaspring.API.menus.MenuManager;
 import org.novasparkle.lunaspring.API.menus.items.Decoration;
 import org.novasparkle.lunaspring.API.menus.items.Item;
 import org.novasparkle.lunaspring.API.menus.updatable.UpdatableIMenu;
@@ -24,14 +23,13 @@ import org.novasparkle.lunaspring.API.util.service.managers.ColorManager;
 import org.novasparkle.lunaspring.API.util.utilities.LunaMath;
 import org.novasparkle.lunaspring.API.util.utilities.Utils;
 import org.satellite.dev.progiple.satemenus.SateMenus;
-import org.satellite.dev.progiple.satemenus.menus.Menus;
 import org.satellite.dev.progiple.satemenus.menus.Refreshable;
 import org.satellite.dev.progiple.satemenus.menus.items.SMItem;
 import org.satellite.dev.progiple.satemenus.menus.menus.AnimatedMenu;
 import org.satellite.dev.progiple.satemenus.menus.menus.Backable;
 import org.satellite.dev.progiple.satemenus.menus.menus.ISateMenu;
 import org.satellite.dev.progiple.satemenus.menus.menus.Recreatable;
-import org.satellite.dev.progiple.satemenus.menus.params.MenuConfiguredItem;
+import org.satellite.dev.progiple.satemenus.menus.items.configured.MenuConfiguredItem;
 import org.satellite.dev.progiple.satemenus.menus.params.MenuSettings;
 import org.satellite.dev.progiple.satemenus.menus.params.animations.IAnimation;
 
@@ -77,7 +75,7 @@ public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMe
             IMenu menu = this.recreatable.reCreate(player);
             if (menu == null) return false;
 
-            MenuManager.openInventory(menu);
+            menu.open();
             return true;
         }
         return false;
@@ -85,16 +83,16 @@ public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMe
 
     @Override
     public void refresh() {
-        SateMenu menu = new SateMenu(player, settings, recreatable);
-        MenuManager.openInventory(menu);
+        new SateMenu(player, settings, recreatable).open();
     }
 
     @Override
     public void onOpen(InventoryOpenEvent e) {
+        int size = this.getInventory().getSize();
         for (MenuConfiguredItem item : settings.items()) {
             if (!item.removal() && settings.checkConditions(player, item.viewConditions())) {
                 for (int slot : item.slots()) {
-                    if (slot < 0) continue;
+                    if (slot < 0 || slot >= size) continue;
                     SMItem menuItem = new SMItem(item, slot);
                     this.addItems(false, menuItem);
                 }
@@ -130,10 +128,9 @@ public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMe
         if (closeAction == null || this.settings.checkConditions(player, closeAction.conditions())) {
             if (closeAction != null) closeAction.process(player, null);
         }
-        else if (closeAction.cancelEventIfError()) {
-            Bukkit.getScheduler().runTaskLater(SateMenus.getInstance(), () -> {
-                MenuManager.openInventory(this);
-            }, 4L);
+        else if (closeAction.cancelEventIfError() && !MenuSettings.VALID_REASONS.contains(e.getReason())) {
+            clear();
+            Bukkit.getScheduler().runTaskLater(SateMenus.getInstance(), this::open, 2L);
         }
     }
 
@@ -184,7 +181,7 @@ public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMe
 
     @Override
     public Item findFirstItem(int i) {
-        return Utils.find(itemList, it -> it.getSlot() == i).orElse(null);
+        return Utils.find(itemList, it -> it != null && it.getSlot() == i).orElse(null);
     }
 
     @Override
@@ -272,10 +269,6 @@ public class SateMenu implements ISateMenu, Refreshable, Recreatable, AnimatedMe
 
     @Override
     public IMenu reCreate(Player player) {
-        SateMenu menu = Menus.open(player, settings, false);
-        if (menu == null) return null;
-
-        menu.recreatable = this.recreatable;
-        return menu;
+        return new SateMenu(player, settings, recreatable);
     }
 }

@@ -20,6 +20,8 @@ public class ChangeSlotAction extends AbstractAnimationAction {
 
     @Override
     public void execute(AnimatedMenu menu, int timeMillis, short index, @Nullable Item item, @Nullable ItemStack itemStack) {
+        if (nullSkip(itemStack, item)) return;
+
         super.execute(menu, timeMillis, index, item, itemStack);
         if (item != null)
             item.remove(menu);

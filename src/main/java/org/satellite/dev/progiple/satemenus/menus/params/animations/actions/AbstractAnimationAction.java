@@ -19,6 +19,7 @@ public abstract class AbstractAnimationAction implements AnimationAction {
     protected final AnimationStage animationStage;
     protected byte slot;
     protected final ConfigurationSection settings;
+    protected final boolean ignoreNull;
 
     protected final SoundParams soundParams;
 
@@ -26,6 +27,7 @@ public abstract class AbstractAnimationAction implements AnimationAction {
         this.animationStage = animationStage;
         this.slot = slot;
         this.settings = settings;
+        this.ignoreNull = settings.getBoolean("ignoreNull", false);
 
         ConfigurationSection soundSection = settings.getConfigurationSection("sound");
         if (soundSection != null) {
@@ -46,6 +48,14 @@ public abstract class AbstractAnimationAction implements AnimationAction {
             if (soundParams.isSingle && index > 0) return;
             AnnounceUtils.sound(player, soundParams.sound, soundParams.volume);
         }
+    }
+
+    protected boolean isNull(ItemStack itemStack, Item item) {
+        return item == null && itemStack == null;
+    }
+
+    protected boolean nullSkip(ItemStack itemStack, Item item) {
+        return ignoreNull && isNull(itemStack, item);
     }
 
     @Override @SneakyThrows

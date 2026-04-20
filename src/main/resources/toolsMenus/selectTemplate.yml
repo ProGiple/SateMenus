@@ -1,0 +1,33 @@
+title: "&0Выбор шаблона"
+rows: 6
+decorations: 
+  peregorodka:
+    material: BLUE_STAINED_GLASS
+    displayName: "{S}Перегородка"
+    slots:
+      - "36-44"
+items:
+  SELECT_ITEM:
+    displayName: "{S}[✎] &fВыбрать шаблон"
+    lore:
+      - " "
+      - "{SP} Идентификатор: {S}[id]"
+      - "{SP} Статус: {E}Не выбран"
+      - " "
+    material: BOOK
+    selected:
+      displayName: "{S}[✎] &fУбрать шаблон"
+      lore:
+        - " "
+        - "{SP} Идентификатор: {S}[id]"
+        - "{SP} Статус: {L}Выбран"
+        - " "
+      material: BOOK
+      enchanted: true
+  BACK_BUTTON:
+    displayName: "{E}Вернуться"
+    lore: []
+    material: BARRIER
+    slot: 49
+order:
+  - 0-35

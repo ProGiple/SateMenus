@@ -5,4 +5,9 @@ import org.satellite.dev.progiple.satemenus.menus.params.MenuSettings;
 
 public interface ISateMenu extends ItemListMenu {
     MenuSettings getSettings();
+
+    @Override
+    default boolean onCloseFirstUnregisterFlag() {
+        return true;
+    }
 }

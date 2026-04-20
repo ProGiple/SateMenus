@@ -1,0 +1,107 @@
+title: "&0Редактирование предмета"
+rows: 3
+decorations:
+  peregorodka:
+    material: BLUE_STAINED_GLASS
+    displayName: "{S}Перегородка"
+    slots:
+      - "9-17"
+items:
+  CHANGE_REMOVAL_STATE_BUTTON:
+    displayName: "{S}[✎] &fПереключить замещение"
+    lore: 
+      - " "
+      - "{SP} &fСтатус: {L}Не удаляется"
+      - " "
+      - "&7Замещение позволяет буквально"
+      - "&7Отправить предмет в архив, из-за"
+      - "&7Которого он не будет отображаться"
+      - "&7Сам, так и не будет отображать все"
+      - "&7Предметы из шаблонов с тем же ID"
+      - " "
+    material: LIME_DYE
+    slot: 0
+    ifRemoval:
+      displayName: "{S}[✎] &fПереключить замещение"
+      lore: 
+        - " "
+        - "{SP} &fСтатус: {E}Удаляется"
+        - " "
+        - "&7Замещение позволяет буквально"
+        - "&7Отправить предмет в архив, из-за"
+        - "&7Которого он не будет отображаться"
+        - "&7Сам, так и не будет отображать все"
+        - "&7Предметы из шаблонов с тем же ID"
+        - " "
+      material: RED_DYE
+  EDIT_SLOT_VALUE:
+    displayName: "{S}[✎] &fИзменить слот предмета"
+    lore:
+      - " "
+      - "{SP} &fСейчас: {S}[value]"
+      - " "
+    material: SNOWBALL
+    slot: 1
+    editMessages:
+      - "[TITLE] {S}[🛈] <S> &fВведите значение в чат: "
+      - "[SUGGESTCOMMAND] {SP} &fВведите новое значение в чат *%*&c[Отмена]*%*cancel*%*"
+  EDIT_CLICK_COOLDOWN_VALUE:
+    displayName: "{S}[✎] &fИзменить время кулдауна клика"
+    lore:
+      - " "
+      - "{SP} &fСейчас: {S}[value] т."
+      - " "
+    material: SNOWBALL
+    slot: 2
+    editMessages:
+      - "[TITLE] {S}[🛈] <S> &fВведите значение в чат: "
+      - "[SUGGESTCOMMAND] {SP} &fВведите новое значение в чат *%*&c[Отмена]*%*cancel*%*"
+  EDIT_ITEM_NAME_BUTTON:
+    displayName: "{S}[✎] &fИзменить ID предмета"
+    lore:
+      - " "
+      - "{SP} &fСейчас: {S}[value]"
+      - " "
+    material: MAP
+    slot: 3
+    editMessages:
+      - "[TITLE] {S}[🛈] <S> &fВведите значение в чат: "
+      - "[SUGGESTCOMMAND] {SP} &fВведите новое значение в чат *%*&c[Отмена]*%*cancel*%*"
+  EDIT_ANY_CLICK_BUTTON:
+    displayName: "{S}[✎] &fИзменить действия нажатия любым кликом"
+    lore: []
+    material: SPYGLASS
+    slot: 4
+  MANAGE_CONDITIONS_BUTTON:
+    displayName: "{S}[✎] &fИзменить условия просмотра"
+    lore: []
+    material: AXOLOTL_BUCKET
+    slot: 5
+  EDIT_LEFT_CLICK_BUTTON:
+    displayName: "{S}[✎] &fИзменить действия нажатия {S}ЛКМ"
+    lore: [ ]
+    material: BLAZE_ROD
+    slot: 6
+  EDIT_RIGHT_CLICK_BUTTON:
+    displayName: "{S}[✎] &fИзменить действия нажатия {S}ПКМ"
+    lore: [ ]
+    material: SHULKER_SHELL
+    slot: 7
+  COPY_PARAMS_BUTTON:
+    displayName: "{S}[✎] &fСкопировать настройки"
+    lore:
+      - " "
+      - "{SP} Зажмите {S}Shift&f и нажмите на"
+      - "{SP} Кнопку, если вам нужно привязать"
+      - "{SP} Настройки этого предмета с "
+      - "{SP} Настройками {S}копируемого предмета."
+      - " "
+      - "{E} Может работать с недочётами"
+      - " "
+    material: NETHERITE_SCRAP
+    slot: 8
+  BACK_BUTTON:
+    displayName: "{E}Вернуться"
+    lore: [ ]
+    material: BARRIER
+    slot: 22

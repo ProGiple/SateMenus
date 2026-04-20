@@ -13,6 +13,8 @@ permissions:
     default: op
   satemenus.open:
     default: op
+  satemenus.convert:
+    default: op
 commands:
   satemenus:
     aliases:

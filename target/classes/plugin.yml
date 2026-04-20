@@ -1,5 +1,5 @@
 name: SateMenus
-version: '1.2.6'
+version: '2.1-FIX'
 main: org.satellite.dev.progiple.satemenus.SateMenus
 api-version: '1.16'
 depend: [LunaSpring]
@@ -12,6 +12,8 @@ permissions:
   satemenus.unregister:
     default: op
   satemenus.open:
+    default: op
+  satemenus.convert:
     default: op
 commands:
   satemenus:

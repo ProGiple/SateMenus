@@ -1,0 +1,131 @@
+title: "&0Редактирование/Создание"
+rows: 6
+decorations: 
+  peregorodka_green:
+    material: BLUE_STAINED_GLASS # Replace with your color
+    displayName: "{S}Перегородка"
+    slots:
+      - "0"
+      - "9"
+      - "18"
+      - "27"
+      - "36-37"
+      - "45-47"
+  peregorodka_white:
+    material: WHITE_STAINED_GLASS
+    displayName: "{S}Перегородка"
+    slots:
+      - "8"
+      - "17"
+      - "26"
+      - "35"
+      - "43-44"
+      - "51-53"
+items:
+  CHANGE_ROWS_ITEM:
+    displayName: "{S}[✎] &fРазмер инвентаря"
+    lore:
+      - " "
+      - "{SP} Выбрано строк:"
+      - "[elements]"
+      - " "
+    material: WRITABLE_BOOK
+    maximumLines: 1
+    slot: 11
+  UPDATING_TIME_ITEM:
+    displayName: "{S}[✎] &fВремя обновления"
+    lore:
+      - " "
+      - "{SP} Сейчас: {S}[value] т."
+      - " "
+      - "&7Время обновления отвечает за"
+      - "&7Переодичность обновления меню"
+      - "&7В тиках, для обновления предметов"
+      - " "
+    material: SNOWBALL
+    slot: 14
+    editMessages:
+      - "[TITLE] {S}[🛈] <S> &fВведите значение в чат: "
+      - "[SUGGESTCOMMAND] {SP} &fВведите новое значение в чат *%*&c[Отмена]*%*cancel*%*"
+  COOLDOWN_CLICK_ITEM:
+    displayName: "{S}[✎] &fВремя кулдауна клика"
+    lore:
+      - " "
+      - "{SP} Сейчас: {S}[value] т."
+      - ""
+      - "&7Время кулдауна клика отвечает за"
+      - "&7Продолжительность перезарядки"
+      - "&7Нажатия, во время которого"
+      - "&7Нельзя будет нажать по предметам"
+      - " "
+    material: SNOWBALL
+    slot: 15
+    editMessages:
+      - "[TITLE] {S}[🛈] <S> &fВведите значение в чат: "
+      - "[SUGGESTCOMMAND] {SP} &fВведите новое значение в чат *%*&c[Отмена]*%*cancel*%*"
+  WRITE_TITLE_ITEM:
+    displayName: "{S}[✎] &fТайтл меню"
+    lore:
+      - " "
+      - "{SP} &fСейчас: [value]"
+      - " "
+    material: MAP
+    slot: 13
+    editMessages:
+      - "[TITLE] {S}[🛈] <S> &fВведите значение в чат: "
+      - "[SUGGESTCOMMAND] {SP} &fВведите новое значение в чат *%*&c[Отмена]*%*cancel*%*"
+  CHANGE_INV_TYPE_ITEM:
+    displayName: "{S}[✎] &fТип инвентаря"
+    lore:
+      - "[elements]"
+    material: CHEST
+    slot: 12
+  TO_SELECT_TEMPLATE_ITEM:
+    displayName: "{S}[✎] &fШаблон"
+    lore: []
+    material: BOOK # NETHERITE_UPGRADE_SMITHING_TEMPLATE (1.21+)
+    slot: 20
+  TO_MANAGE_COMMAND_ITEM:
+    displayName: "{S}[✎] &fКоманды открытия"
+    lore: [ ]
+    material: COMMAND_BLOCK
+    slot: 21
+    ifNotAllowed:
+      displayName: "{E}[✎] &fНедоступно!"
+      lore:
+        - " "
+        - "{SPE} Команды открытия редактируются"
+        - "{SPE} Только для самой меню!"
+        - " "
+      material: BARRIER
+  TO_MANAGE_ANIMATION_ITEM:
+    displayName: "{S}[✎] &fАнимации при открытии"
+    lore: [ ]
+    material: BEACON
+    slot: 22
+  EDIT_OPEN_ACTION_ITEM:
+    displayName: "{S}[✎] &fДействия открытия"
+    lore: [ ]
+    material: OAK_DOOR
+    slot: 23
+  EDIT_CLOSE_ACTION_ITEM:
+    displayName: "{S}[✎] &fДействия закрытия"
+    lore: [ ]
+    material: ACACIA_DOOR
+    slot: 24
+  EDIT_DECORATIONS:
+    displayName: "{S}[✎] &fДекорации"
+    lore: [ ]
+    material: DRAGON_HEAD
+    slot: 30
+  EDIT_ITEMS:
+    displayName: "{S}[✎] &fФункциональные предметы"
+    lore: [ ]
+    material: STICKY_PISTON
+    slot: 32
+  BUILD_BUTTON:
+    displayName: "{S}[✎] &fСохранить меню"
+    lore: [ ]
+    enchanted: true
+    material: OBSERVER
+    slot: 49

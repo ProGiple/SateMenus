@@ -1,0 +1,43 @@
+title: "&0Управление командами"
+rows: 4
+decorations: 
+  peregorodka:
+    material: BLUE_STAINED_GLASS
+    displayName: "{S}Перегородка"
+    slots:
+      - "18-26"
+items:
+  SELECT_ITEM:
+    displayName: "{S}[✎] &fВыключить команду"
+    lore:
+      - " "
+      - "{SP} &fКоманда: {S}/[command]"
+      - " "
+      - "{SP} {S}ЛКМ&f - выключить регистрацию"
+      - "{SP} {S}ПКМ&f - изменить команду"
+      - " "
+    material: LIME_WOOL
+    editMessages:
+      - "[TITLE] {S}[🛈] <S> &fВведите значение в чат: "
+      - "[SUGGESTCOMMAND] {SP} &fВведите новое значение в чат *%*&c[Отмена]*%*cancel*%*"
+    disabledStatus:
+      displayName: "{S}[✎] &fВключить команду"
+      lore:
+        - " "
+        - "{SP} &fКоманда: {S}/[command]"
+        - " "
+        - "{SP} {S}ЛКМ&f - включить регистрацию"
+        - "{SP} {S}ПКМ&f - изменить команду"
+        - " "
+      material: RED_WOOL
+  APPEND_ITEM:
+    displayName: "{S}[✎] &fДобавить команду"
+    lore: []
+    material: GLOW_ITEM_FRAME
+  BACK_BUTTON:
+    displayName: "{E}Вернуться"
+    lore: [ ]
+    material: BARRIER
+    slot: 31
+order:
+  - 0-17
