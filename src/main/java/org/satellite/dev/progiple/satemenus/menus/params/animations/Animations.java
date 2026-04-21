@@ -47,6 +47,7 @@ public class Animations {
     }
 
     public void loadFromDir(File directory) {
+        animations.values().removeIf(a -> !a.getConfig().getFile().exists());
         if (!directory.exists() || !directory.isDirectory() || directory.listFiles() == null) return;
 
         File[] files = directory.listFiles();

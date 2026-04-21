@@ -13,9 +13,11 @@ import java.util.Map;
 
 @Getter
 public class Animation implements IAnimation {
+    private final IConfig config;
     private final AnimationStage playStage;
     private final Map<String, ConfigurationSection> reservedActions;
     public Animation(IConfig config) {
+        this.config = config;
         this.reservedActions = new HashMap<>();
 
         ConfigurationSection reservedItems = config.getSection("reservedActions");

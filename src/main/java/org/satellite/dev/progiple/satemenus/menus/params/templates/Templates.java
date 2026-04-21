@@ -34,6 +34,7 @@ public class Templates {
     }
 
     public void loadFromDir(File directory) {
+        templates.removeIf(t -> !t.config().getFile().exists());
         if (!directory.exists() || !directory.isDirectory() || directory.listFiles() == null) return;
 
         File[] files = directory.listFiles();

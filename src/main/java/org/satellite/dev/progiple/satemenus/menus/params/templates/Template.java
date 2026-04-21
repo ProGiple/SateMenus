@@ -56,7 +56,10 @@ public record Template(@NotNull IConfig config,
         List<MenuConfiguredItem> list = new ArrayList<>();
 
         ConfigurationSection section = config.getSection("items");
-        if (section == null) return list;
+        if (section == null) {
+            if (template != null) list.addAll(template.items());
+            return list;
+        }
 
         for (String key : section.getKeys(false)) {
             ConfigurationSection itemSection = section.getConfigurationSection(key);

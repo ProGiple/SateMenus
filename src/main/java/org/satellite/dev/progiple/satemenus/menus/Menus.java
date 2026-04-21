@@ -79,6 +79,7 @@ public class Menus {
     }
 
     public void loadFromDir(File directory) {
+        menuSettings.values().removeIf(s -> !s.config().getFile().exists());
         if (!directory.exists() || !directory.isDirectory() || directory.listFiles() == null) return;
 
         File[] files = directory.listFiles();

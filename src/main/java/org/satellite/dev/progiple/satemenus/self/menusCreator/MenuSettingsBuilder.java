@@ -41,6 +41,8 @@ public class MenuSettingsBuilder {
     private Integer updatingTime = 0;
     public MenuSettingsBuilder(ITemplated templated) {
         this.id = templated.id();
+        this.template = templated.template();
+
         this.animations = new ArrayList<>(templated.getAnimationIds());
         this.items = templated.items().stream().flatMap(i -> {
             var list = new ArrayList<MenuBuilderItem>();

@@ -8,11 +8,11 @@ import org.satellite.dev.progiple.satemenus.SateMenus;
 import org.satellite.dev.progiple.satemenus.menus.Menus;
 import org.satellite.dev.progiple.satemenus.menus.menus.impl.SateMenu;
 import org.satellite.dev.progiple.satemenus.menus.params.ITemplated;
+import org.satellite.dev.progiple.satemenus.menus.params.MenuSettings;
+import org.satellite.dev.progiple.satemenus.menus.params.templates.Template;
 import org.satellite.dev.progiple.satemenus.menus.params.templates.Templates;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
@@ -28,6 +28,11 @@ public class Creator {
 
         builder.generatorType().save(result);
         buildersCache.toMap().forEach((u, c) -> c.remove(builder));
+
+        if (builder.generatorType() == GeneratorType.TEMPLATE) {
+            SateMenus.loadData();
+        }
+
         return result;
     }
 

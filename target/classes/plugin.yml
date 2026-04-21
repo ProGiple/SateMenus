@@ -1,5 +1,5 @@
 name: SateMenus
-version: '2.1-FIX'
+version: '2.2.0'
 main: org.satellite.dev.progiple.satemenus.SateMenus
 api-version: '1.16'
 depend: [LunaSpring]

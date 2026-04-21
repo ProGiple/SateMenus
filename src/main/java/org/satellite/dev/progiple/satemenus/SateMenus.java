@@ -41,6 +41,7 @@ public final class SateMenus extends LunaPlugin {
 
         AnnounceUtils.registerAction(new OpenMenuAction());
         loadData();
+        loadConverters();
 
         CommandInitializer.initialize(this, "#.self.subcommands");
         this.processListeners("#.self.handlers");
@@ -68,9 +69,10 @@ public final class SateMenus extends LunaPlugin {
         Animations.loadFromDir(new File(instance.getDataFolder(), "animations/"));
         Templates.loadFromDir(new File(instance.getDataFolder(), "templates/"));
         Menus.loadFromDir(new File(instance.getDataFolder(), "menus/"));
+    }
 
+    public static void loadConverters() {
         Converters.register(new ContainerConverter());
-        //Converters.register(new DeluxeMenusConverter());
     }
 
     private void loadAnimationActions() {

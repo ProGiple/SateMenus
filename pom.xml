@@ -6,7 +6,7 @@
 
   <groupId>org.satellite.dev.progiple</groupId>
   <artifactId>SateMenus</artifactId>
-  <version>2.1-FIX</version>
+  <version>2.2.0</version>
   <packaging>jar</packaging>
 
   <name>SateMenus</name>
